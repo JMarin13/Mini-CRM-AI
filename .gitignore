@@ -1,0 +1,4 @@
+backend-leads/.env
+**/node_modules/
+**/vscode/
+**/.vscode/
