@@ -1,52 +1,42 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { crearLead } from '../services/leadService';
-
+import { crearLead } from "../services/leadService";
 
 function LeadForm({ onLeadCreated }) {
-
   const [form, setForm] = useState({
-    nombreEmpresa: '',
-    contacto: '',
-    email: '',
-    industria: '',
-    descripcionNecesidad: ''
+    nombreEmpresa: "",
+    contacto: "",
+    email: "",
+    industria: "",
+    descripcionNecesidad: "",
   });
 
-
   const handleChange = (e) => {
-
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-
   };
 
-
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     await crearLead(form);
 
     setForm({
-      nombreEmpresa: '',
-      contacto: '',
-      email: '',
-      industria: '',
-      descripcionNecesidad: ''
+      nombreEmpresa: "",
+      contacto: "",
+      email: "",
+      industria: "",
+      descripcionNecesidad: "",
     });
 
     onLeadCreated();
-
   };
 
-
   return (
-    <form onSubmit={handleSubmit}>
-
-      <h2>Crear Lead</h2>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <h2 className="text-2xl font-semibold text-gray-700">Crear Lead</h2>
 
       <input
         type="text"
@@ -55,6 +45,7 @@ function LeadForm({ onLeadCreated }) {
         value={form.nombreEmpresa}
         onChange={handleChange}
         required
+        className="w-full border rounded-lg p-3"
       />
 
       <input
@@ -64,6 +55,7 @@ function LeadForm({ onLeadCreated }) {
         value={form.contacto}
         onChange={handleChange}
         required
+        className="w-full border rounded-lg p-3"
       />
 
       <input
@@ -73,6 +65,7 @@ function LeadForm({ onLeadCreated }) {
         value={form.email}
         onChange={handleChange}
         required
+        className="w-full border rounded-lg p-3"
       />
 
       <select
@@ -80,8 +73,8 @@ function LeadForm({ onLeadCreated }) {
         value={form.industria}
         onChange={handleChange}
         required
+        className="w-full border rounded-lg p-3"
       >
-
         <option value="">Seleccione industria</option>
 
         <option value="Tecnología">Tecnología</option>
@@ -91,7 +84,6 @@ function LeadForm({ onLeadCreated }) {
         <option value="Retail">Retail</option>
 
         <option value="Salud">Salud</option>
-
       </select>
 
       <textarea
@@ -100,15 +92,17 @@ function LeadForm({ onLeadCreated }) {
         value={form.descripcionNecesidad}
         onChange={handleChange}
         required
+        className="w-full border rounded-lg p-3 h-32"
       />
 
-      <button type="submit">
+      <button
+        type="submit"
+        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
+      >
         Guardar Lead
       </button>
-
     </form>
   );
-
 }
 
 export default LeadForm;

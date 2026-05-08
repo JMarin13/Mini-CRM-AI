@@ -6,63 +6,89 @@ function LeadList({ leads }) {
   return (
     <div>
 
-      <h2>Listado de Leads</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+        Leads
+      </h2>
 
-      <table border="1">
+      <div className="overflow-x-auto">
 
-        <thead>
+        <table className="w-full border-collapse">
 
-          <tr>
+          <thead>
 
-            <th>Empresa</th>
+            <tr className="bg-gray-200 text-left">
 
-            <th>Contacto</th>
+              <th className="p-3">Empresa</th>
 
-            <th>Industria</th>
+              <th className="p-3">Contacto</th>
 
-            <th>Fecha creación</th>
+              <th className="p-3">Industria</th>
 
-            <th>Prioridad IA</th>
+              <th className="p-3">Fecha</th>
 
-            <th>Acciones</th>
+              <th className="p-3">Prioridad IA</th>
 
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          {leads.map((lead) => (
-
-            <tr key={lead.id}>
-
-              <td>{lead.nombreEmpresa}</td>
-
-              <td>{lead.contacto}</td>
-
-              <td>{lead.industria}</td>
-
-              <td>
-                {new Date(lead.createdAt).toLocaleDateString()}
-              </td>
-
-              <td>{lead.prioridadIA}</td>
-
-              <td>
-
-                <Link to={`/lead/${lead.id}`}>
-                  Ver detalle
-                </Link>
-
-              </td>
+              <th className="p-3">Acciones</th>
 
             </tr>
 
-          ))}
+          </thead>
 
-        </tbody>
+          <tbody>
 
-      </table>
+            {leads.map((lead) => (
+
+              <tr
+                key={lead.id}
+                className="border-b hover:bg-gray-50"
+              >
+
+                <td className="p-3">
+                  {lead.nombreEmpresa}
+                </td>
+
+                <td className="p-3">
+                  {lead.contacto}
+                </td>
+
+                <td className="p-3">
+                  {lead.industria}
+                </td>
+
+                <td className="p-3">
+                  {new Date(
+                    lead.createdAt
+                  ).toLocaleDateString()}
+                </td>
+
+                <td className="p-3">
+
+                  <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                    {lead.prioridadIA}
+                  </span>
+
+                </td>
+
+                <td className="p-3">
+
+                  <Link
+                    to={`/lead/${lead.id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    Ver detalle
+                  </Link>
+
+                </td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
 
     </div>
   );
